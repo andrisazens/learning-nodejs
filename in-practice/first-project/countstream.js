@@ -3,7 +3,7 @@ var util = require("util");
 
 module.exports = CountStream;
 
-utils.inherits(CountStream, WriteStream);
+util.inherits(CountStream, Writable);
 
 function CountStream(matchText, options) {
     Writable.call(this, options);
