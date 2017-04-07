@@ -22,7 +22,7 @@ NotesManager.prototype.addCurrentNote = function () {
     }
 }
 
-NotesManager.prototype.showHelp = function() {
+NotesManager.prototype.showHelp = function () {
     this.$help.show();
 
     document.addEventListener("click", function __handler__(evt) {
@@ -35,11 +35,11 @@ NotesManager.prototype.showHelp = function() {
     }, true);
 }
 
-NotesManager.prototype.hideHelp = function() {
+NotesManager.prototype.hideHelp = function () {
     this.$help.hide();
 }
 
-NotesManager.prototype.handleOpenHelp = function(evt) {
+NotesManager.prototype.handleOpenHelp = function (evt) {
     if (!$help.is(":visible")) {
         evt.preventDefault();
         evt.stopPropagation();
@@ -48,22 +48,22 @@ NotesManager.prototype.handleOpenHelp = function(evt) {
     }
 }
 
-NotesManager.prototype.handleAddNote = function(evt)  {
+NotesManager.prototype.handleAddNote = function (evt) {
     this.addCurrentNote();
 }
 
-NotesManager.prototype.handleEnter = function(evt) {
+NotesManager.prototype.handleEnter = function (evt) {
     if (evt.which == 13) {
         this.addCurrentNote();
     }
 }
 
-NotesManager.prototype.handleDocumentClick = function(evt) {
+NotesManager.prototype.handleDocumentClick = function (evt) {
     this.$notes.removeClass("active");
     this.$notes.children(".note").removeClass("highlighted");
 }
 
-NotesManager.prototype.handleNoteClick = function(evt) {
+NotesManager.prototype.handleNoteClick = function (evt) {
     evt.preventDefault();
     evt.stopPropagation();
 
@@ -72,13 +72,13 @@ NotesManager.prototype.handleNoteClick = function(evt) {
     $(evt.target).addClass("highlighted");
 }
 
-NotesManager.prototype.loadData = function(data) {
+NotesManager.prototype.loadData = function (data) {
     for (var i = 0; i < data.length; i++) {
         this.notes.push(data[i]);
     }
 }
 
-NotesManager.prototype.init = function(opts) {
+NotesManager.prototype.init = function (opts) {
     // cache references to the DOM elements we need to manage
     this.$notes = $(opts.notes);
     this.$new_note = $(opts.new_note);
@@ -109,43 +109,22 @@ NotesManager.prototype.init = function(opts) {
     this.$notes.on("click", ".note", this.handleNoteClick.bind(this));
 }
 
-// var
-//     // private `notes` data
-//     notes = [],
-
-//     // DOM refs
-//     $notes,
-//     $new_note,
-//     $add_note,
-//     $help,
-//     $open_help,
-
-//     // module API
-//     publicAPI = {
-//         loadData: loadData,
-//         init: init
-//     }
-//     ;
-
-// return publicAPI;
-
-
 var myNotes = new NotesManager();
 
 // assume this data came from the database
 myNotes.loadData([
-	"This is the first note I've taken!",
-	"Now is the time for all good men to come to the aid of their country.",
-	"The quick brown fox jumped over the moon."
+    "This is the first note I've taken!",
+    "Now is the time for all good men to come to the aid of their country.",
+    "The quick brown fox jumped over the moon."
 ]);
 
 
-$(document).ready(function(){
-	myNotes.init({
-		notes: "#notes",
-		new_note: "#note",
-		add_note: "#add_note",
-		help: "#help",
-		open_help: "#open_help"
-	});
+$(document).ready(function () {
+    myNotes.init({
+        notes: "#notes",
+        new_note: "#note",
+        add_note: "#add_note",
+        help: "#help",
+        open_help: "#open_help"
+    });
 });
