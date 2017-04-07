@@ -1,5 +1,3 @@
-// copy in your "ex2.js" or "ex2-fixed.js" code
-
 function NotesManager() {
     this.notes = [];
 }
@@ -10,7 +8,7 @@ NotesManager.prototype.addNote = function (note) {
             .addClass("note")
             .text(note)
     );
-};
+}
 
 NotesManager.prototype.addCurrentNote = function () {
     var current_note = this.$new_note.val();
@@ -23,6 +21,7 @@ NotesManager.prototype.addCurrentNote = function () {
 }
 
 NotesManager.prototype.showHelp = function () {
+    let context = this;
     this.$help.show();
 
     document.addEventListener("click", function __handler__(evt) {
@@ -31,7 +30,7 @@ NotesManager.prototype.showHelp = function () {
         evt.stopImmediatePropagation();
 
         document.removeEventListener("click", __handler__, true);
-        hideHelp();
+        context.hideHelp();
     }, true);
 }
 
@@ -40,7 +39,7 @@ NotesManager.prototype.hideHelp = function () {
 }
 
 NotesManager.prototype.handleOpenHelp = function (evt) {
-    if (!$help.is(":visible")) {
+    if (!this.$help.is(":visible")) {
         evt.preventDefault();
         evt.stopPropagation();
 
@@ -88,8 +87,8 @@ NotesManager.prototype.init = function (opts) {
 
     // build the initial list from the existing `notes` data
     var html = "";
-    for (i = 0; i < notes.length; i++) {
-        html += "<a href='#' class='note'>" + notes[i] + "</a>";
+    for (i = 0; i < this.notes.length; i++) {
+        html += "<a href='#' class='note'>" + this.notes[i] + "</a>";
     }
     this.$notes.html(html);
 
